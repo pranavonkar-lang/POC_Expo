@@ -40,7 +40,7 @@ export interface ProfileScreenProps {
   // Profile data props
   profileData: ProfileData;
   setProfileData: (data: ProfileData) => void;
-  
+  goNext: () => void;
   // Handler functions
   handleEditProfile: () => void;
   handleLogout: () => void;

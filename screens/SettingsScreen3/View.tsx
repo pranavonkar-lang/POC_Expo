@@ -4,7 +4,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { styles } from './styles';
 
-export default function SettingsScreen3({theme,userId, goBack, resetToHome, resetToProfile}:any) {
+export default function SettingsScreen3({theme,userId, goBack, resetToHome, resetToProfile,resetToSettings}:any) {
  
   return (
     <View style={styles.container}>
@@ -18,8 +18,9 @@ export default function SettingsScreen3({theme,userId, goBack, resetToHome, rese
       )}
       
       <CustomButton title="Go Back" onPress={goBack} fullWidth />
-      <CustomButton title="Reset to Home" onPress={resetToHome} fullWidth />
-      <CustomButton title="Reset to Profile" onPress={resetToProfile} fullWidth />
+      <CustomButton title="Original Tab" onPress={resetToHome} fullWidth />
+      {/* <CustomButton title="Reset to Profile" onPress={resetToProfile} fullWidth />
+      <CustomButton title="Reset to Settings" onPress={resetToSettings} fullWidth /> */}
     </View>
   );
 }

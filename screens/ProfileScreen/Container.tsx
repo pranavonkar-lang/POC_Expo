@@ -35,6 +35,10 @@ export default function ProfileContainer() {
     NavigationService.navigate('/settings');
   };
 
+  const goNext = () => {
+    NavigationService.navigateWithOrigin(screensPath.settings2,screensPath.profile);
+  };
+
   return (
     <ProfileScreen
       profileData={profileData}
@@ -43,6 +47,7 @@ export default function ProfileContainer() {
       handleLogout={handleLogout}
       handleBack={handleBack}
       handleSettings={handleSettings}
+      goNext={goNext}
       colorScheme={colorScheme}
       imageurl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
       title="My Profile"

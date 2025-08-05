@@ -10,13 +10,9 @@ import NavigationService from '@/app/services/navigationServices';
 
 export default function HomeScreen() {
 
-  // const navigateToProfile = () => {
-  //   NavigationService.navigate(screensPath.profile, { userId: '123', userName: 'John Doe' });
-  // };
-
-  // const navigateToSettings = () => {
-  //   NavigationService.navigate(screensPath.settings);
-  // };
+  const goNext = () => {
+      NavigationService.navigateWithOrigin(screensPath.settings2,screensPath.tabs);
+  };
 
   return (
     <ParallaxScrollView
@@ -34,9 +30,7 @@ export default function HomeScreen() {
       </ThemedView>
       
       <ThemedView style={styles.stepContainer}>
-        {/* <ThemedText type="subtitle">Navigations</ThemedText> */}
-        {/* <CustomButton title="Go to Profile (with params)" onPress={navigateToProfile} fullWidth /> */}
-        {/* <CustomButton title="Go to Settings" onPress={navigateToSettings} fullWidth type="secondary" /> */}
+        <CustomButton title="Go to Settings2" onPress={goNext} fullWidth type="secondary" />
       </ThemedView>
     </ParallaxScrollView>
   );

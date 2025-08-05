@@ -1,4 +1,4 @@
-import { screensPath } from "@/app/screensPath";
+import  screensPath  from "@/app/screensPath";
 import NavigationService from "@/app/services/navigationServices";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";

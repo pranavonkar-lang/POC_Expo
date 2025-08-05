@@ -19,6 +19,7 @@ export default function ProfileScreen(props: ProfileScreenProps) {
     imageurl,
     title = "Profile",
     subtitle,
+    goNext,
   } = props;
 
 
@@ -87,8 +88,8 @@ export default function ProfileScreen(props: ProfileScreenProps) {
           />
 
           <CustomButton 
-            title="Settings" 
-            onPress={handleSettings} 
+            title="Go To Settings2" 
+            onPress={goNext} 
             fullWidth 
             type="secondary"
             style={{ marginTop: 8 }}

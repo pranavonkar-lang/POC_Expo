@@ -1,5 +1,5 @@
-import NotificationsScreen from '@/screens/NotificationsScreen';
+import SettingsScreen from '@/screens/SettingsScreen';
 
 export default function ProfilePage() {
-  return <NotificationsScreen />;
+  return <SettingsScreen />;
 }

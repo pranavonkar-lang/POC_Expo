@@ -16,11 +16,15 @@ export default function Container(props: any) {
   };
 
   const resetToHome = () => {
-    NavigationService.replace(screensPath.tabs);
+    NavigationService.replaceBackToOrigin();
   };
 
   const resetToProfile = () => {
     NavigationService.replace(screensPath.profile);
+  };
+
+  const resetToSettings = () => {
+    NavigationService.replace(screensPath.settingsTab);
   };
 
   return (
@@ -30,6 +34,7 @@ export default function Container(props: any) {
       goBack={goBack}
       resetToHome={resetToHome}
       resetToProfile={resetToProfile}
+      resetToSettings={resetToSettings}
     />
   );
 }

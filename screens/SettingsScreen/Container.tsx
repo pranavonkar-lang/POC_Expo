@@ -16,12 +16,12 @@ export default function Container(props: any) {
   const navigation = useNavigation();
 
   const goBack = () => {
-    // NavigationService.back();
-    navigation.dispatch(DrawerActions.openDrawer())
+    NavigationService.back();
+    // navigation.dispatch(DrawerActions.openDrawer())
   };
 
   const goNext = () => {
-    NavigationService.push(screensPath.settings2);
+    NavigationService.navigateWithOrigin(screensPath.settings2,screensPath.settingsTab);
   };
 
   const resetToHome = () => {

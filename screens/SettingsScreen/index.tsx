@@ -1,6 +1,5 @@
 // import Container from "./Container";
-import Layout from "@/app/(tabs)/settings/_layout";
-
+import Container from "./Container";
 export default function ProfilePage() {
-  return <Layout />;
+  return <Container/>;
 } 
