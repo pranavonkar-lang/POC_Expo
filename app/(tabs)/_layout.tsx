@@ -1,6 +1,6 @@
 import { Tabs, useNavigation } from 'expo-router';
 import React from 'react';
-import { Platform, Pressable, TouchableOpacity } from 'react-native';
+import { Platform }  from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
