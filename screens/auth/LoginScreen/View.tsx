@@ -15,8 +15,8 @@ export default function LoginScreen({
   imageurl
 }: LoginScreenProps) {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('pranavonkar@bitcot.com');
+  const [password, setPassword] = useState('Pranav@123');
   const colorScheme = useColorScheme() ?? 'light';
 
   const headerImage = (

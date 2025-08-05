@@ -121,8 +121,7 @@ export default function HomeScreen(props: any) {
           />
         </View>
       </ThemedView>
-
-      <CustomSpacer height={30} />
+      <CustomSpacer height={26} />
     </ScrollView>
   );
 }
