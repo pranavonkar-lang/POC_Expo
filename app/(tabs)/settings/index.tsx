@@ -1,5 +1,24 @@
-import SettingsScreen from '@/screens/SettingsScreen';
+import React, { useCallback } from 'react';
+import { View, Text } from 'react-native';
+import { useDrawerStatus } from '@react-navigation/drawer';
 
-export default function ProfilePage() {
-  return <SettingsScreen />;
+import SettingsScreen from '@/screens/SettingsScreen';
+import { useHideTabBarOnDrawerOpen } from '@/hooks/useHideTabBarOnDrawerOpen';
+
+export default function index() {
+
+  const isDrawerOpen = useDrawerStatus() === 'open';
+  useHideTabBarOnDrawerOpen();
+
+  return (
+    <View style={{ flex: 1 }}>
+      {isDrawerOpen ? (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Drawer is open - tab bar hidden</Text>
+        </View>
+      ) : (
+        <SettingsScreen />
+      )}
+    </View>
+  );
 }
