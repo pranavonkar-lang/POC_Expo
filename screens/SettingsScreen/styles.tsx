@@ -16,4 +16,13 @@ export const styles = StyleSheet.create({
       fontSize: 16,
       marginBottom: 10,
     },
+    heroSection: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingVertical: 24,
+      marginBottom: 32,
+      padding:12,
+      borderRadius:10,
+    },
   }); 

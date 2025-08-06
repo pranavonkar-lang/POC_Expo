@@ -1,32 +1,56 @@
-import React from 'react';
-import { ScrollView, View, TouchableOpacity, FlatList } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import CustomButton from '@/components/CustomButton';
-import { Ionicons } from '@expo/vector-icons';
-import { styles } from './styles';
-import { CustomSpacer } from '@/components/CustomSpacer';
+import React from "react";
+import { ScrollView, View, TouchableOpacity, FlatList } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import CustomButton from "@/components/CustomButton";
+import { Ionicons } from "@expo/vector-icons";
+import { styles } from "./styles";
+import { CustomSpacer } from "@/components/CustomSpacer";
+import CustomCounter from "@/components/CustomCounter";
+import IconCardWithCount from "@/components/IconCardWithCount";
 
 export default function HomeScreen(props: any) {
   const { goNext } = props;
 
   const quickActions = [
-    { title: 'Profile', icon: 'person', color: '#FF6B6B', onPress: () => {} },
-    { title: 'Settings', icon: 'settings', color: '#4ECDC4', onPress: goNext },
-    { title: 'Notifications', icon: 'notifications', color: '#45B7D1', onPress: () => {} },
-    { title: 'Messages', icon: 'chatbubbles', color: '#96CEB4', onPress: () => {} },
+    { title: "Profile", icon: "person", color: "#FF6B6B", onPress: () => {} },
+    { title: "Settings", icon: "settings", color: "#4ECDC4", onPress: goNext },
+    {
+      title: "Notifications",
+      icon: "notifications",
+      color: "#45B7D1",
+      onPress: () => {},
+    },
+    {
+      title: "Messages",
+      icon: "chatbubbles",
+      color: "#96CEB4",
+      onPress: () => {},
+    },
   ];
 
   const recentActivities = [
-    { title: 'Profile Updated', time: '2 hours ago', icon: 'checkmark-circle' },
-    { title: 'New Message', time: '4 hours ago', icon: 'mail' },
-    { title: 'Settings Changed', time: '1 day ago', icon: 'settings' },
+    { title: "Profile Updated", time: "2 hours ago", icon: "checkmark-circle" },
+    { title: "New Message", time: "4 hours ago", icon: "mail" },
+    { title: "Settings Changed", time: "1 day ago", icon: "settings" },
   ];
 
   const featuredContent = [
-    { title: 'Getting Started Guide', description: 'Learn the basics of our app', icon: 'book' },
-    { title: 'Advanced Features', description: 'Discover powerful tools', icon: 'star' },
-    { title: 'Tips & Tricks', description: 'Boost your productivity', icon: 'bulb' },
+    {
+      title: "Getting Started Guide",
+      description: "Learn the basics of our app",
+      icon: "book",
+    },
+    {
+      title: "Advanced Features",
+      description: "Discover powerful tools",
+      icon: "star",
+    },
+    {
+      title: "Tips & Tricks",
+      description: "Boost your productivity",
+      icon: "bulb",
+    },
   ];
 
   return (
@@ -39,25 +63,43 @@ export default function HomeScreen(props: any) {
             Ready to explore today's features?
           </ThemedText>
         </View>
+        <IconCardWithCount
+          icon={
+            <Ionicons name="cart" size={30} color="#007AFF" />
+          }
+          storageKey='counter_value'
+        />
       </ThemedView>
-
+      <ThemedView style={styles.heroSection}>
+        <CustomCounter />
+      </ThemedView>
       <ThemedView style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Quick Actions</ThemedText>
         <FlatList
           data={quickActions}
           keyExtractor={(item, index) => `quick-${index}`}
           numColumns={2}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
           contentContainerStyle={styles.quickActionsGrid}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={[styles.quickActionCard, { backgroundColor: item.color + '15' }]}
+              style={[
+                styles.quickActionCard,
+                { backgroundColor: item.color + "15" },
+              ]}
               onPress={item.onPress}
             >
-              <View style={[styles.quickActionIcon, { backgroundColor: item.color }]}>
+              <View
+                style={[
+                  styles.quickActionIcon,
+                  { backgroundColor: item.color },
+                ]}
+              >
                 <Ionicons name={item.icon as any} size={24} color="white" />
               </View>
-              <ThemedText style={styles.quickActionTitle}>{item.title}</ThemedText>
+              <ThemedText style={styles.quickActionTitle}>
+                {item.title}
+              </ThemedText>
             </TouchableOpacity>
           )}
         />
@@ -75,7 +117,9 @@ export default function HomeScreen(props: any) {
                 <Ionicons name={item.icon as any} size={20} color="#007AFF" />
               </View>
               <View style={styles.activityContent}>
-                <ThemedText style={styles.activityTitle}>{item.title}</ThemedText>
+                <ThemedText style={styles.activityTitle}>
+                  {item.title}
+                </ThemedText>
                 <ThemedText style={styles.activityTime}>{item.time}</ThemedText>
               </View>
             </View>
@@ -95,7 +139,9 @@ export default function HomeScreen(props: any) {
                 <Ionicons name={item.icon as any} size={24} color="#007AFF" />
               </View>
               <View style={styles.featuredContent}>
-                <ThemedText style={styles.featuredTitle}>{item.title}</ThemedText>
+                <ThemedText style={styles.featuredTitle}>
+                  {item.title}
+                </ThemedText>
                 <ThemedText style={styles.featuredDescription}>
                   {item.description}
                 </ThemedText>

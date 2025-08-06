@@ -12,13 +12,7 @@ export default function index() {
 
   return (
     <View style={{ flex: 1 }}>
-      {isDrawerOpen ? (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>Drawer is open - tab bar hidden</Text>
-        </View>
-      ) : (
         <SettingsScreen />
-      )}
     </View>
   );
 }

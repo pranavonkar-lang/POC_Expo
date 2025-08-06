@@ -127,4 +127,13 @@ export const styles = StyleSheet.create({
     buttonContainer: {
       width: '100%',
     },
+    heroSection: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingVertical: 24,
+      marginBottom: 32,
+      padding:12,
+      borderRadius:10,
+    },
   }); 

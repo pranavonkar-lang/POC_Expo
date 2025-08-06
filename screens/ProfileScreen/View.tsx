@@ -1,14 +1,12 @@
-import CustomButton from '@/components/CustomButton';
-import {
-    ProfileScreenProps,
-    ProfileValidationErrors
-} from '@/types/profile';
-import React from 'react';
-import { Image, Text, View } from 'react-native';
-import { styles } from './styles';
+import CustomButton from "@/components/CustomButton";
+import { ProfileScreenProps, ProfileValidationErrors } from "@/types/profile";
+import React from "react";
+import { Image, Text, View } from "react-native";
+import { styles } from "./styles";
+import { ThemedView } from "@/components/ThemedView";
+import CustomCounter from "@/components/CustomCounter";
 
 export default function ProfileScreen(props: ProfileScreenProps) {
-  
   const {
     profileData,
     handleEditProfile,
@@ -22,23 +20,23 @@ export default function ProfileScreen(props: ProfileScreenProps) {
     goNext,
   } = props;
 
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-      
+
       <View style={styles.profileHeader}>
         {profileData.avatar ? (
           <Image source={{ uri: profileData.avatar }} style={styles.avatar} />
         ) : (
           <View style={styles.avatarPlaceholder}>
             <Text style={styles.avatarText}>
-              {profileData.firstName?.[0]}{profileData.lastName?.[0]}
+              {profileData.firstName?.[0]}
+              {profileData.lastName?.[0]}
             </Text>
           </View>
         )}
-        
+
         <View style={styles.profileInfo}>
           <Text style={styles.name}>
             {profileData.firstName} {profileData.lastName}
@@ -55,14 +53,14 @@ export default function ProfileScreen(props: ProfileScreenProps) {
             <Text style={styles.detailValue}>{profileData.phone}</Text>
           </View>
         )}
-        
+
         {profileData.location && (
           <View style={styles.detailRow}>
             <Text style={styles.detailLabel}>Location:</Text>
             <Text style={styles.detailValue}>{profileData.location}</Text>
           </View>
         )}
-        
+
         {profileData.website && (
           <View style={styles.detailRow}>
             <Text style={styles.detailLabel}>Website:</Text>
@@ -71,40 +69,41 @@ export default function ProfileScreen(props: ProfileScreenProps) {
         )}
       </View>
 
+      <ThemedView style={styles.heroSection}>
+          <CustomCounter />
+      </ThemedView>
+
       <View style={styles.buttonContainer}>
+        <CustomButton
+          title="Go Back"
+          onPress={handleBack}
+          fullWidth
+          type="secondary"
+        />
 
-          <CustomButton 
-            title="Go Back" 
-            onPress={handleBack} 
-            fullWidth 
-            type="secondary"
-          />
-        
-          <CustomButton 
-            title="Edit Profile" 
-            onPress={handleEditProfile} 
-            fullWidth 
-            style={{ marginTop: 8 }}
-          />
+        <CustomButton
+          title="Edit Profile"
+          onPress={handleEditProfile}
+          fullWidth
+          style={{ marginTop: 8 }}
+        />
 
-          <CustomButton 
-            title="Go To Settings2" 
-            onPress={goNext} 
-            fullWidth 
-            type="secondary"
-            style={{ marginTop: 8 }}
-          />
-        
-          <CustomButton 
-            title="Logout" 
-            onPress={handleLogout} 
-            fullWidth 
-            type="outline"
-            style={{ marginTop: 16 }}
-          />
+        <CustomButton
+          title="Go To Settings2"
+          onPress={goNext}
+          fullWidth
+          type="secondary"
+          style={{ marginTop: 8 }}
+        />
 
+        <CustomButton
+          title="Logout"
+          onPress={handleLogout}
+          fullWidth
+          type="outline"
+          style={{ marginTop: 16 }}
+        />
       </View>
     </View>
   );
 }
-
