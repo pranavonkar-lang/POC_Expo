@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, ViewStyle } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import CustomButton from './CustomButton';
-import { ThemedText } from './ThemedText';
-import { ThemedView } from './ThemedView';
+import CustomButton from "./CustomButton";
+import { ThemedText } from "./ThemedText";
+import { ThemedView } from "./ThemedView";
 
 type CustomCounterProps = {
   initialCount?: number;
@@ -12,9 +12,10 @@ type CustomCounterProps = {
   max?: number;
   onChange?: (count: number) => void;
   containerStyle?: ViewStyle;
+  defaultCount?: number;
 };
 
-const STORAGE_KEY = 'counter_value';
+const STORAGE_KEY = "counter_value";
 
 export default function CustomCounter({
   initialCount = 0,
@@ -22,6 +23,7 @@ export default function CustomCounter({
   max = Number.MAX_SAFE_INTEGER,
   onChange,
   containerStyle,
+  defaultCount = 0,
 }: CustomCounterProps) {
   const [count, setCount] = useState<number>(initialCount);
 
@@ -39,6 +41,18 @@ export default function CustomCounter({
     loadCount();
   }, []);
 
+  useEffect(() => {
+    const fetchCount = async () => {
+      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      const parsed = stored ? parseInt(stored, 10) : defaultCount;
+      if (count != parsed) {
+        setCount(parsed);
+      }
+    };
+    fetchCount();
+    const interval = setInterval(fetchCount, 1000);
+    return () => clearInterval(interval);
+  }, [STORAGE_KEY]);
 
   const updateCount = async (newCount: number) => {
     setCount(newCount);
@@ -60,30 +74,40 @@ export default function CustomCounter({
 
   return (
     <ThemedView style={[styles.container, containerStyle]}>
-      <CustomButton title="−" onPress={handleDecrement} type="outline" style={styles.button} />
+      <CustomButton
+        title="−"
+        onPress={handleDecrement}
+        type="outline"
+        style={styles.button}
+      />
       <ThemedText type="title" style={styles.count}>
         {count}
       </ThemedText>
-      <CustomButton title="+" onPress={handleIncrement} type="outline" style={styles.button} />
+      <CustomButton
+        title="+"
+        onPress={handleIncrement}
+        type="outline"
+        style={styles.button}
+      />
     </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex:1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent:'space-between',
-      gap: 16,
-    },
-    count: {
-      minWidth: 40,
-      textAlign: 'center',
-    },
-    button: {
-      minWidth: 48,
-      paddingHorizontal: 12,
-      paddingVertical: 6,
-    },
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+  },
+  count: {
+    minWidth: 40,
+    textAlign: "center",
+  },
+  button: {
+    minWidth: 48,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
 });

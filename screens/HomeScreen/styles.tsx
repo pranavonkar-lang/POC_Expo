@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 45,
+    paddingTop: 20,
   },
   heroSection: {
     flexDirection: 'row',

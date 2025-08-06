@@ -63,15 +63,6 @@ export default function HomeScreen(props: any) {
             Ready to explore today's features?
           </ThemedText>
         </View>
-        <IconCardWithCount
-          icon={
-            <Ionicons name="cart" size={30} color="#007AFF" />
-          }
-          storageKey='counter_value'
-        />
-      </ThemedView>
-      <ThemedView style={styles.heroSection}>
-        <CustomCounter />
       </ThemedView>
       <ThemedView style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Quick Actions</ThemedText>
