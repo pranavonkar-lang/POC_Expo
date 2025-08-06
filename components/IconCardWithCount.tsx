@@ -24,7 +24,6 @@ export default function IconCardWithCount({
   useEffect(() => {
     const fetchCount = async () => {
       const stored = await AsyncStorage.getItem(storageKey);
-      console.log(stored);
       const parsed = stored ? parseInt(stored, 10) : defaultCount;
       setCount(parsed);
     };

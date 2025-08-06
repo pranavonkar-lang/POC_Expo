@@ -8,6 +8,7 @@ import { styles } from "./styles";
 import { CustomSpacer } from "@/components/CustomSpacer";
 import CustomCounter from "@/components/CustomCounter";
 import IconCardWithCount from "@/components/IconCardWithCount";
+import CustomHeader from "@/components/CustomHeader";
 
 export default function HomeScreen(props: any) {
   const { goNext } = props;
@@ -55,6 +56,13 @@ export default function HomeScreen(props: any) {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* <CustomHeader
+        title="Home"
+        leftIcon={<Ionicons name="arrow-back" size={24} color="#007AFF" />}
+        onLeftPress={() => console.log("Menu pressed")}
+        rightIcon={<Ionicons name="notifications" size={24} color="#007AFF" />}
+        onRightPress={() => console.log("Bell pressed")}
+      /> */}
       <ThemedView style={styles.heroSection}>
         <View style={styles.heroContent}>
           <ThemedText style={styles.greeting}>Good morning! 👋</ThemedText>
