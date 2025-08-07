@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ActivityIndicator, View, StyleSheet, useColorScheme } from 'react-native';
-import { useAppSelector } from '@/store/common/hooks';
+import { useAppSelector, useAppDispatch } from '@/store/common/hooks';
+// import { loginFailure } from '@/store/features/authSlice';
 
 const CustomLoader = () => {
     
   const isLoading = useAppSelector((state) => state.auth.loading);
   const colorScheme = useColorScheme();
+  // const dispatch = useAppDispatch();
+
+  // useEffect(()=>{
+  //   console.log('TT01', isLoading)
+  //   dispatch(loginFailure(''))
+  // },[])
 
   if (!isLoading) return null;
 

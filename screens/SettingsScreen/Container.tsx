@@ -21,7 +21,7 @@ export default function Container(props: any) {
   };
 
   const goNext = () => {
-    NavigationService.navigateWithOrigin(screensPath.settings2,screensPath.settingsTab);
+    NavigationService.navigate(screensPath.settings2);
   };
 
   const resetToHome = () => {

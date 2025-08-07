@@ -32,18 +32,14 @@ const NavigationService = {
     return router.canGoBack();
   },
 
-  navigateWithOrigin: (path: string, currentTab: string, params?: Record<string, any>) => {
-    originTab = currentTab;
-    NavigationService.push(path, {
-      ...params,
-      from: currentTab,
-    });
+  saveTabPath: (path: string) => {
+    originTab = path;
   },
 
-  replaceBackToOrigin: () => {
+  navigateToTab: () => {
     const tab = originTab || 'tabs';
     originTab = null; 
-    NavigationService.replace(`${tab}` as any);
+    NavigationService.navigate(`${tab}` as any);
   },
 };
 
