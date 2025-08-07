@@ -7,6 +7,7 @@ import { styles } from './styles';
 import { LoginScreenProps } from '@/screens/auth/auth';
 import { useColorScheme } from 'react-native'
 import React, { useState } from 'react'
+import CustomLoader from '@/components/CustomLoader';
 
 export default function LoginScreen({
   handleLogin,
@@ -35,6 +36,8 @@ export default function LoginScreen({
         light: '#f2f2f2',
         dark: '#1c1c1e',
       }}>
+        
+      <CustomLoader />
 
       <CustomTextInput
         label="Email"

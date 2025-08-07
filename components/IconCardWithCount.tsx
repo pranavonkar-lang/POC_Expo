@@ -3,6 +3,7 @@ import { View, StyleSheet, ViewStyle } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
+import { useAppDispatch, useAppSelector} from '@/store/common/hooks';
 
 type IconCardWithCountProps = {
   icon: React.ReactNode;
@@ -19,19 +20,8 @@ export default function IconCardWithCount({
   badgeColor = '#FF3B30',
   defaultCount = 0,
 }: IconCardWithCountProps) {
-  const [count, setCount] = useState<number>(defaultCount);
-
-  useEffect(() => {
-    const fetchCount = async () => {
-      const stored = await AsyncStorage.getItem(storageKey);
-      const parsed = stored ? parseInt(stored, 10) : defaultCount;
-      setCount(parsed);
-    };
-    fetchCount();
-
-    const interval = setInterval(fetchCount, 1000);
-    return () => clearInterval(interval);
-  }, [storageKey]);
+  
+  const count = useAppSelector((state:any) => state.badge[storageKey] ?? defaultCount);
 
   return (
     <ThemedView style={[styles.card, containerStyle]}>

@@ -11,5 +11,5 @@ export default function Container(props: any) {
     );
   };
 
-  return <HomeScreen goNext={goNext} />;
+  return <HomeScreen goNext={goNext} props={props}/>;
 }

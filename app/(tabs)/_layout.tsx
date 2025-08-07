@@ -48,9 +48,10 @@ export default function TabLayout() {
                 marginHorizontal:20,
               }}
               icon={<Ionicons name="cart" size={18} color="#007AFF" />}
-              storageKey="counter_value"
+              storageKey="count"
             />
           ),
+          
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
@@ -61,6 +62,7 @@ export default function TabLayout() {
         name={screensPath.profile}
         options={{
           title: "Profile",
+          headerShown:true,
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="person" color={color} />
           ),

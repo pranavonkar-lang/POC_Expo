@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from 'react';
+import { StyleSheet, ViewStyle } from 'react-native';
+import { useAppDispatch, useAppSelector } from '@/store/common/hooks';
+import { setBadgeCount } from '@/store/features/badgeSlice';
 
-import CustomButton from "./CustomButton";
-import { ThemedText } from "./ThemedText";
-import { ThemedView } from "./ThemedView";
+import CustomButton from './CustomButton';
+import { ThemedText } from './ThemedText';
+import { ThemedView } from './ThemedView';
 
 type CustomCounterProps = {
-  initialCount?: number;
+  storageKey: string; // key used in Redux store
   min?: number;
   max?: number;
   onChange?: (count: number) => void;
@@ -15,48 +16,19 @@ type CustomCounterProps = {
   defaultCount?: number;
 };
 
-const STORAGE_KEY = "counter_value";
-
 export default function CustomCounter({
-  initialCount = 0,
+  storageKey,
   min = Number.MIN_SAFE_INTEGER,
   max = Number.MAX_SAFE_INTEGER,
   onChange,
   containerStyle,
   defaultCount = 0,
 }: CustomCounterProps) {
-  const [count, setCount] = useState<number>(initialCount);
+  const dispatch = useAppDispatch();
+  const count = useAppSelector((state:any) => state.badge[storageKey] ?? defaultCount);
 
-  useEffect(() => {
-    const loadCount = async () => {
-      const stored = await AsyncStorage.getItem(STORAGE_KEY);
-      if (stored !== null) {
-        const parsed = parseInt(stored, 10);
-        setCount(parsed);
-        onChange?.(parsed);
-      } else {
-        await AsyncStorage.setItem(STORAGE_KEY, String(initialCount));
-      }
-    };
-    loadCount();
-  }, []);
-
-  useEffect(() => {
-    const fetchCount = async () => {
-      const stored = await AsyncStorage.getItem(STORAGE_KEY);
-      const parsed = stored ? parseInt(stored, 10) : defaultCount;
-      if (count != parsed) {
-        setCount(parsed);
-      }
-    };
-    fetchCount();
-    const interval = setInterval(fetchCount, 1000);
-    return () => clearInterval(interval);
-  }, [STORAGE_KEY]);
-
-  const updateCount = async (newCount: number) => {
-    setCount(newCount);
-    await AsyncStorage.setItem(STORAGE_KEY, String(newCount));
+  const updateCount = (newCount: number) => {
+    dispatch(setBadgeCount({ key: storageKey, count: newCount }));
     onChange?.(newCount);
   };
 
@@ -96,14 +68,14 @@ export default function CustomCounter({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     gap: 16,
   },
   count: {
     minWidth: 40,
-    textAlign: "center",
+    textAlign: 'center',
   },
   button: {
     minWidth: 48,
@@ -111,3 +83,4 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
 });
+

@@ -4,6 +4,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { ProfileData } from '@/types/profile';
 import React, { useState } from 'react';
 import ProfileScreen from './View';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProfileContainer() {
   const colorScheme = useColorScheme() ?? 'light';
@@ -24,6 +25,7 @@ export default function ProfileContainer() {
   };
 
   const handleLogout = () => {
+    AsyncStorage.clear();
     NavigationService.replace(screensPath.login);
   };
 
