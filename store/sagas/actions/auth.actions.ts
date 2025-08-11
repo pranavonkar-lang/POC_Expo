@@ -1,6 +1,6 @@
 import { authType, LoginPayload } from "../types/auth.types";
 
-const loginRequest = (payload: LoginPayload) => ({
+const loginRequest = (payload: any) => ({
   type: authType.loginRequest,
   payload,
 });

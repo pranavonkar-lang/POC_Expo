@@ -7,18 +7,25 @@ import { authAction } from '@/store/sagas/actions/auth.actions';
 import { useDispatch } from 'react-redux';
 import { loginRequestRT } from '@/store/features/authSlice';
 
+interface LoginRequestType {
+  username?: string,
+  password:string,
+  email?: string,
+}
+
 export default function Container(props:any) {
 
   const dispatch = useDispatch();
 
   const url = 'https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D'
 
-  const handleLogin = () => {
+  const handleLogin = ({username,password}:LoginRequestType) => {
     const data = {
-      "username": "emilys",
-      "password": "emilyspass",
-      "expiresInMins": 30
+      "username": username,
+      "password": password,
     }
+    // "username": "emilys",
+    //   "password": "emilyspass",
     dispatch(loginRequestRT(data))
     dispatch(authAction.loginRequest(data));
   };
@@ -33,7 +40,7 @@ export default function Container(props:any) {
 
   return (
     <LoginScreen
-      handleLogin={handleLogin}
+      handleLogin={(data)=>handleLogin(data)}
       handleForgotPassword={handleForgotPassword}
       handleSignUp={handleSignUp}
       imageurl={url}
