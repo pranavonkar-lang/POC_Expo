@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import type { TimeIntervalTriggerInput } from "expo-notifications";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import messaging from "@react-native-firebase/messaging";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -14,30 +16,22 @@ Notifications.setNotificationHandler({
 });
 
 export default function NotificationManager() {
-  const notificationListener = useRef<Notifications.Subscription | null>(null);
-  const responseListener = useRef<Notifications.Subscription | null>(null);
 
   useEffect(() => {
     registerForNotifications();
-
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener(notification => {
-        console.log("📩 Notification Received:", notification);
+    
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: remoteMessage.notification?.title ?? "No title",
+          body: remoteMessage.notification?.body ?? "",
+          data: remoteMessage.data,
+        },
+        trigger: null,
       });
+    });
 
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener(response => {
-        console.log("📲 Notification Clicked:", response);
-      });
-
-    return () => {
-      if (notificationListener.current) {
-        Notifications.removeNotificationSubscription(notificationListener.current);
-      }
-      if (responseListener.current) {
-        Notifications.removeNotificationSubscription(responseListener.current);
-      }
-    };
+    return unsubscribe;
   }, []);
 
 
@@ -62,8 +56,7 @@ export default function NotificationManager() {
     }
 
     const tokenData = await Notifications.getDevicePushTokenAsync();
-    console.log("FCM Token:", tokenData.data);
-    return tokenData.data;
+    AsyncStorage.setItem("fcmToken", tokenData.data);
   }
 
   return null;
