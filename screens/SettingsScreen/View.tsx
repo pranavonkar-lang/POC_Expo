@@ -23,7 +23,7 @@ export default function SettingsScreen({
       {userId && <Text style={styles.param}>User ID: {userId}</Text>}
 
       <ThemedView style={styles.heroSection}>
-        <CustomCounter />
+        <CustomCounter defaultCount={0} storageKey="count"/>
       </ThemedView>
 
       <CustomButton title="Go Next" onPress={goNext} fullWidth />

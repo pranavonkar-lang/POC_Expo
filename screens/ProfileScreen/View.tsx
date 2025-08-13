@@ -70,7 +70,7 @@ export default function ProfileScreen(props: ProfileScreenProps) {
       </View>
 
       <ThemedView style={styles.heroSection}>
-          <CustomCounter />
+          <CustomCounter defaultCount={0} storageKey="count"/>
       </ThemedView>
 
       <View style={styles.buttonContainer}>

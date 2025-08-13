@@ -16,7 +16,7 @@ export default function Container(props: any) {
   };
 
   const resetToHome = () => {
-    NavigationService.replaceBackToOrigin();
+    NavigationService.navigateToTab();
   };
 
   const resetToProfile = () => {
