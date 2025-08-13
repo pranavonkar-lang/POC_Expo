@@ -1,29 +1,31 @@
-import screensPath from '@/app/screensPath';
-import NavigationService from '@/app/services/navigationServices';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { ProfileData } from '@/types/profile';
-import React, { useState } from 'react';
-import ProfileScreen from './View';
+import screensPath from "@/app/screensPath";
+import NavigationService from "@/app/services/navigationServices";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { ProfileData } from "@/types/profile";
+import React, { useState } from "react";
+import ProfileScreen from "./View";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileContainer() {
-  const colorScheme = useColorScheme() ?? 'light';
-  
+  const colorScheme = useColorScheme() ?? "light";
+
   const [profileData, setProfileData] = useState<ProfileData>({
-    id: '1',
-    email: 'pranav@com.com',
-    firstName: 'Pranav',
-    lastName: 'Onkar',
-    bio: 'Software Developer passionate about creating amazing user experiences.',
-    phone: '8827171605',
-    location: 'San Francisco, CA',
-    website: 'https://pranav.dev',
+    id: "1",
+    email: "pranav@com.com",
+    firstName: "Pranav",
+    lastName: "Onkar",
+    bio: "Software Developer passionate about creating amazing user experiences.",
+    phone: "8827171605",
+    location: "San Francisco, CA",
+    website: "https://pranav.dev",
   });
 
   const handleEditProfile = () => {
-    NavigationService.navigate('/edit-profile', { profileData });
+    NavigationService.navigate("/edit-profile", { profileData });
   };
 
   const handleLogout = () => {
+    AsyncStorage.clear();
     NavigationService.replace(screensPath.login);
   };
 
@@ -32,11 +34,11 @@ export default function ProfileContainer() {
   };
 
   const handleSettings = () => {
-    NavigationService.navigate('/settings');
+    NavigationService.navigate("/settings");
   };
 
   const goNext = () => {
-    NavigationService.navigateWithOrigin(screensPath.settings2,screensPath.profile);
+    NavigationService.navigate(screensPath.settings2);
   };
 
   return (
@@ -54,4 +56,4 @@ export default function ProfileContainer() {
       subtitle="Manage your account information"
     />
   );
-} 
+}

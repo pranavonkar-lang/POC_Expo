@@ -10,6 +10,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import screensPath from "@/app/screensPath";
 import { Ionicons } from "@expo/vector-icons";
 import IconCardWithCount from "@/components/IconCardWithCount";
+import NavigationService from "../services/navigationServices";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -48,23 +49,27 @@ export default function TabLayout() {
                 marginHorizontal:20,
               }}
               icon={<Ionicons name="cart" size={18} color="#007AFF" />}
-              storageKey="counter_value"
+              storageKey="count"
             />
           ),
+          
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
         }}
+        listeners={{ focus: () => {NavigationService.saveTabPath('tabs')}}}
       />
 
       <Tabs.Screen
         name={screensPath.profile}
         options={{
           title: "Profile",
+          headerShown:true,
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="person" color={color} />
           ),
         }}
+        listeners={{ focus: () => {NavigationService.saveTabPath('profile')}}}
       />
 
       <Tabs.Screen
@@ -75,6 +80,7 @@ export default function TabLayout() {
             <IconSymbol size={28} name="gear" color={color} />
           ),
         }}
+        listeners={{ focus: () => {NavigationService.saveTabPath('(tabs)/settings')}}}
       />
     </Tabs>
   );

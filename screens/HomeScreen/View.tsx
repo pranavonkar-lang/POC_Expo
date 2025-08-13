@@ -1,17 +1,22 @@
 import React from "react";
-import { ScrollView, View, TouchableOpacity, FlatList } from "react-native";
+import { ScrollView, View, TouchableOpacity, FlatList, Alert } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import CustomButton from "@/components/CustomButton";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { CustomSpacer } from "@/components/CustomSpacer";
-import CustomCounter from "@/components/CustomCounter";
-import IconCardWithCount from "@/components/IconCardWithCount";
-import CustomHeader from "@/components/CustomHeader";
+// import CustomCounter from "@/components/CustomCounter";
+// import IconCardWithCount from "@/components/IconCardWithCount";
+// import CustomHeader from "@/components/CustomHeader";
+import { useLocalSearchParams } from "expo-router";
 
 export default function HomeScreen(props: any) {
   const { goNext } = props;
+
+  const auth = useLocalSearchParams();
+
+  // Alert.alert(JSON.stringify(auth))
 
   const quickActions = [
     { title: "Profile", icon: "person", color: "#FF6B6B", onPress: () => {} },
@@ -63,6 +68,7 @@ export default function HomeScreen(props: any) {
         rightIcon={<Ionicons name="notifications" size={24} color="#007AFF" />}
         onRightPress={() => console.log("Bell pressed")}
       /> */}
+
       <ThemedView style={styles.heroSection}>
         <View style={styles.heroContent}>
           <ThemedText style={styles.greeting}>Good morning! 👋</ThemedText>

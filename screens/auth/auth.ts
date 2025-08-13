@@ -8,7 +8,8 @@ export interface UserData {
 }
 
 export interface LoginFormData {
-  email: string;
+  email?: string;
+  username?: string;
   password: string;
 }
 
@@ -38,7 +39,7 @@ export interface LoginScreenProps {
   // password: string;
   // setEmail: (email: string) => void;
   // setPassword: (password: string) => void;
-  handleLogin: () => void;
+  handleLogin: ({username, password}:LoginFormData) => void;
   handleForgotPassword: () => void;
   handleSignUp: () => void;
   // colorScheme: 'light' | 'dark';
