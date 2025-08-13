@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from '@/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import NavigationStack from './NavigationStack';
+import NotificationManager from "@/app/services/notificationServices/NotificationManager"; 
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -21,6 +22,7 @@ export default function RootLayout() {
   return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <NotificationManager />
           <NavigationStack />
         </PersistGate>
       </Provider>

@@ -1,12 +1,13 @@
 import CustomButton from "@/components/CustomButton";
 import CustomTextInput from "@/components/CustomTextInput";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View,Button } from "react-native";
 import { styles } from "./styles";
 import { LoginScreenProps } from "@/screens/auth/auth";
 import { useColorScheme } from "react-native";
 import React, { useState } from "react";
 import CustomLoader from "@/components/CustomLoader";
+import { scheduleLocalNotification } from "@/app/services/notificationServices/NotificationManager";
 
 export default function LoginScreen({
   handleLogin,
@@ -35,6 +36,14 @@ export default function LoginScreen({
         dark: "#1c1c1e",
       }}
     >
+    {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Button
+        title="Send Notification"
+        onPress={() =>
+          scheduleLocalNotification("Hello!", "This is from NotificationManager", 3)
+        }
+      />
+    </View> */}
       <CustomLoader />
 
       {/* <CustomTextInput
